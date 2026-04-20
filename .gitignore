@@ -1,0 +1,23 @@
+# --- Базы данных (MySQL Workbench) ---
+*.mwb.bak        # Резервные копии моделей
+*.lock           # Временные файлы блокировки
+.mysql-access    # Файлы с доступами (если есть)
+
+# --- Python & Data Science ---
+__pycache__/     # Кэш Python
+.ipynb_checkpoints/ # Временные файлы Jupyter Notebook
+.env             # ФАЙЛ С ПАРОЛЯМИ (Очень важно!)
+venv/            # Виртуальное окружение (его не пушат)
+.venv/
+
+# --- Большие файлы данных ---
+*.csv            # Если файлы тяжелые, их лучше не пушить
+*.json
+*.xlsx
+*.sql.gz         # Сжатые дампы баз данных
+
+# --- Система и IDE ---
+.vscode/         # Настройки VS Code
+.idea/           # Настройки PyCharm
+Thumbs.db        # Мусор Windows
+.DS_Store        # Мусор macOS
