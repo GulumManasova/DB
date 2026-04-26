@@ -1,6 +1,14 @@
 CREATE DATABASE superstore;
 USE superstore;
 
+-- data cleaning
+-- trimming whitespace from key strings to ensure accurate joins and grouping
+UPDATE superstore SET 
+    `Customer Name` = TRIM(`Customer Name`),
+    `City` = TRIM(`City`),
+    `Product Name` = TRIM(`Product Name`),
+    `Segment` = TRIM(`Segment`);
+
 -- creating tables from ER
 CREATE TABLE `Geography` (
   `geo_id` int PRIMARY KEY AUTO_INCREMENT,
@@ -42,6 +50,15 @@ CREATE TABLE `Shipments` (
   `ship_date` date,
   `ship_mode` varchar(255)
 );
+
+-- indexing for performance optimization
+-- foreign key indexing to speed up complex join operations
+CREATE INDEX idx_orders_customer ON Orders(customer_id);
+CREATE INDEX idx_order_items_order ON Order_Items(order_id);
+CREATE INDEX idx_order_items_product ON Order_Items(product_id);
+CREATE INDEX idx_customers_geo ON Customers(geo_id);
+-- date indexing for time-series analysis
+CREATE INDEX idx_orders_date ON Orders(order_date);
 
 -- define relationships and adding fk
 ALTER TABLE `Customers` ADD FOREIGN KEY (`geo_id`) REFERENCES `Geography` (`geo_id`);
